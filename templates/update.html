@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}List of Games{% endblock %}
+{% block body %}
+<div class="container">
+  <h1>Update a game</h1>
+ <form action ="/update/{{game_to_update.id}}" METHOD ="POST">
+     <input type="text" placeholder="Name" name="name" value = {{game_to_update.name}}>
+     <input type="text" placeholder="Rating" name="rating" value ={{game_to_update.rating}}>
+     <input type="submit" value ="Update Game" class="btn btn-secondary">
+ </form>
+
+ 
+</div>
+{% endblock %}

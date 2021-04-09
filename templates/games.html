@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}List of Games{% endblock %}
+{% block body %}
+<div class="container">
+  <h1>Games</h1>
+ <form action ="/games" METHOD ="POST">
+     <input type="text" placeholder="Title" name="name">
+     <input type="text" placeholder="Rating" name="rating">
+     <input type="date" placeholder="Date" name="date_released">
+     <input type="submit" value ="Add game" class="btn btn-secondary">
+ </form>
+
+ <table class="table table-striped">
+     <tr>
+        <th>Game id</th>
+         <th>Game title</th>
+            <th>Rating</th>
+            <th>Date </th>
+     </tr>
+            <tr>
+            {% for game in games %}
+            <td>{{ game.id }}</td>
+            <td>{{ game.name }}</td>
+            <td>{{ game.rating }}</td>
+            <td>{{ game.date_released | strftime}}</td>
+         <td><a href="/update/{{ game.id }}" 
+            class="btn btn-secondary btn-sm">Update</a></td>
+            <td><a href="/delete/{{ game.id }}" 
+                class="btn btn-secondary btn-sm">Delete</a></td>
+         {% endfor %}
+         </tr>
+</table>
+   
+
+</div>
+{% endblock %}
