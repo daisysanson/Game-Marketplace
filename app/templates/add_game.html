@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<div class="container">
+  <h1 class="page-header">Add Game</h1>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="alert alert-danger">
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <form method="POST" action="{{ url_for('add_game') }}">
+    {{ form.csrf_token }}
+    <div class="form-group">{{ form.name.label }} {{ form.name(size=20, class="form-control") }}</div>
+    <div class="form-group">{{ form.rating.label }} {{ form.rating(size=20, class="form-control", type="rating") }}</div>
+    <div class="form-group">{{ form.date_released.label }} {{ form.date_released(class="form-control", type="text") }}</div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</div>
+{% endblock %}

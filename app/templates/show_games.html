@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}List of Games{% endblock %}
+{% block main %}
+<div class="container">
+  <h1>Games</h1>
+  <div class="container">
+  <h1 class="page-header">Show Games</h1>
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <div class="alert alert-success">
+        <ul>
+        {% for message in messages %}
+          <li>{{ message }}</li>
+        {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
+  {% endwith %}
+  
+ <table class="table table-striped">
+  {% for game in games %}
+     <tr>
+        <th>Game id</th>
+         <th>Game title</th>
+            <th>Rating</th>
+            <th>Date </th>
+     </tr>
+            <tr>
+            
+            <td>{{ game.id }}</td>
+            <td>{{ game.name }}</td>
+            <td>{{ game.rating }}</td>
+            <td>{{ game.date_released }}</td>
+
+         
+         </tr>
+         {% endfor %}
+</table>
+   
+
+</div>
+{% endblock %}
