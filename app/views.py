@@ -11,7 +11,7 @@ def index():
     return render_template("home.html")
 
 
-@app.route('/show_games/')
+@app.route('/show_games')
 def show_games():
     games = db.session.query(Games).all() # or you could have used User.query.all()
 
@@ -61,11 +61,11 @@ def add_game():
             logging.info('Game Added')
             
             flash('Game successfully added')
-            return redirect((url_for('show_games')))
+            return redirect(url_for('show_games'))
 
 
     flash_errors(input_form)
-    return render_template('/add_game.html', form=input_form)
+    return render_template('add_game.html', form=input_form)
         
 
 def flash_errors(form):
