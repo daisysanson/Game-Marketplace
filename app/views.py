@@ -1,6 +1,6 @@
 from app import app, db
 from flask import render_template, request, redirect, url_for, flash
-from app.forms import InputForm, validate_date
+from app.forms import InputForm
 from app.models import Games
 import logging
 # from dateutil.parser import *
