@@ -1,6 +1,6 @@
 from app import app, db
 from flask import render_template, request, redirect, url_for, flash
-from app.forms import InputForm
+from app.forms import InputForm, validate_date
 from app.models import Games
 import logging
 # from dateutil.parser import *
@@ -54,6 +54,8 @@ def add_game():
             name = input_form.name.data
             rating = input_form.rating.data
             date_released = input_form.date_released.data
+            if validate_date(date_released) == false:
+                flash('Game successfully added')
 
             new_game = Games(name, rating, date_released)
             db.session.add(new_game)
