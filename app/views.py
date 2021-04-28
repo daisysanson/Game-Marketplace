@@ -1,7 +1,6 @@
 from app import app, db
 from flask import render_template, request, redirect, url_for, flash
 from app.forms import InputForm
-from app.models import Games
 import logging
 # from dateutil.parser import *
 
@@ -54,8 +53,7 @@ def add_game():
             name = input_form.name.data
             rating = input_form.rating.data
             date_released = input_form.date_released.data
-            if validate_date(date_released) == false:
-                flash('Game successfully added')
+
 
             new_game = Games(name, rating, date_released)
             db.session.add(new_game)
@@ -78,18 +76,9 @@ def flash_errors(form):
                 error
             ))
 
-# @app.route('/<file_name>.txt')
-# def send_text_file(file_name):
-#     """Send your static text file."""
-#     file_dot_text = file_name + '.txt'
-#     return app.send_static_file(file_dot_text)
 
 @app.after_request
 def add_header(response):
-    """
-    Add headers to both force latest IE rendering engine or Chrome Frame,
-    and also to cache the rendered page for 10 minutes.
-    """
     response.headers['X-UA-Compatible'] = 'IE=Edge,chrome=1'
     response.headers['Cache-Control'] = 'public, max-age=600'
     return response
@@ -97,7 +86,6 @@ def add_header(response):
 
 @app.errorhandler(404)
 def page_not_found(error):
-    """Custom 404 page."""
     return render_template('404.html'), 404
 
 @app.template_filter('strftime')
@@ -108,11 +96,4 @@ def _jinja2_filter_datetime(date):
 if __name__ == '__main__':
     app.run(debug=True,host="0.0.0.0",port="8080")
     
-# def validator(rating):
-#     rating_int = int(rating)
-#     if rating_int < 0 | rating_int > 5:
-#         print("False")
-#         return False 
-#     else:
-#         print("True")
-#         return True
+
