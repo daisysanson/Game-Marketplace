@@ -1,5 +1,6 @@
 from app import app, db
 from flask import render_template, request, redirect, url_for, flash
+from app.models import Games
 from app.forms import InputForm
 import logging
 # from dateutil.parser import *
@@ -8,7 +9,6 @@ import logging
 @app.route('/')
 def index():
     return render_template("home.html")
-
 
 @app.route('/show_games')
 def show_games():
