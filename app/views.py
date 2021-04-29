@@ -2,8 +2,9 @@ from app import app, db
 from flask import render_template, request, redirect, url_for, flash
 from app.models import Games
 from app.forms import InputForm
+from app.sort import add_games_to_array
 import logging
-# from dateutil.parser import *
+
 
 
 @app.route('/')
@@ -12,7 +13,8 @@ def index():
 
 @app.route('/show_games')
 def show_games():
-    games = db.session.query(Games).all() # or you could have used User.query.all()
+    games = db.session.query(Games).all()
+    
 
     return render_template('show_games.html', games=games)
 
