@@ -8,8 +8,10 @@ def add_games_to_array(games):
     for game in games:
         list_of_games.append(game)
 
-    quickSort(list_of_games,0, len(list_of_games) -1 ) 
-    print (list_of_games)
+    print(list_of_games)
+    quickSort(list_of_games,0, len(list_of_games) -1 )
+    print(list_of_games)
+    return list_of_games
     
         
 def partition(array, low, high):
@@ -18,7 +20,6 @@ def partition(array, low, high):
   
     for j in range(low, high):
   
-       
         if array[j].rating <= pivot:
   
         
@@ -32,8 +33,6 @@ def quickSort(array, low, high):
     if len(array) == 1:
         return array
     if low < high:
-  
-     
         pi = partition(array, low, high)
   
         quickSort(array, low, pi-1)

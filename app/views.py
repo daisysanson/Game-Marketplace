@@ -14,10 +14,9 @@ def index():
 @app.route('/show_games')
 def show_games():
     games = db.session.query(Games).all()
-    add_games_to_array(games)
-    
-
-    return render_template('show_games.html', games=games)
+    sorted_games = add_games_to_array(games)
+    print(sorted_games)
+    return render_template('show_games.html', sorted_games=sorted_games)
 
 @app.route('/update/<int:id>', methods=['POST', 'GET'])
 def update(id):

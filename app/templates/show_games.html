@@ -18,7 +18,7 @@
   {% endwith %}
   
  <table class="table table-striped">
-  {% for game in games %}
+  {% for sorted_game in sorted_games %}
      <tr>
         <th>Game id</th>
          <th>Game title</th>
@@ -28,17 +28,17 @@
             <th></th>
      </tr>
             <tr>
-            <td>{{ game.id }}</td>
-            <td>{{ game.name }}</td>
-            <td>{{ game.rating }}</td>
-            <td>{{ game.date_released| strftime }}</td>
+            <td>{{ sorted_game.id }}</td>
+            <td>{{ sorted_game.name }}</td>
+            <td>{{ sorted_game.rating }}</td>
+            <td>{{ sorted_game.date_released| strftime }}</td>
             <td>
-              <form action="{{url_for('delete', id=game.id)}}" method="post">
+              <form action="{{url_for('delete', id=sorted_game.id)}}" method="post">
                 <input type="hidden" name="update" value="delete">
                 <input type="submit" value="Delete" class="btn btn-danger">
               </form>
             </td>
-            <td><a href="update/{{game.id}}" class = "btn btn-info">Update</a>
+            <td><a href="update/{{sorted_game.id}}" class = "btn btn-info">Update</a>
             </td>
          </tr>
          {% endfor %}
