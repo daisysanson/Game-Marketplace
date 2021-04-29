@@ -14,37 +14,45 @@ def index():
 @app.route('/show_games')
 def show_games():
     games = db.session.query(Games).all()
+    add_games_to_array(games)
     
 
     return render_template('show_games.html', games=games)
 
-# @app.route('/update/<int:id>', methods=['POST', 'GET'])
-# def update(id):
-#     game_to_update = Games.query.get_or_404(id)
-#     if request.method == "POST":
-#         game_to_update.name = request.form['name']
-#         game_to_update.rating = request.form['rating']
+@app.route('/update/<int:id>', methods=['POST', 'GET'])
+def update(id):
+    input_form = InputForm()
+    game = Games.query.filter_by(id=id).first()
+    if request.method == "POST":
+        if input_form.validate_on_submit():
+            Games.query.filter_by(id=id).delete()
+
+            name = input_form.name.data
+            rating = input_form.rating.data
+            date_released = input_form.date_released.data  
+           
+            game= Games(name, rating, date_released)
+            db.session.add(game)
+            db.session.commit()
+            return redirect('/show_games')
+
+    return render_template('update.html', game=game, form=input_form)
+
+@app.route('/delete/<int:id>', methods=['POST'])
+def delete(id):
+    if request.method == "POST":
+        games = db.session.query(Games).all()
+        game_to_delete = Games.query.get_or_404(id)
     
-#         try:
-#             db.session.commit()
-#             return redirect('/games')
-#         except:
-#             return "There was a problem updating the game"
-#     else:
-#         return render_template('update.html', game_to_update=game_to_update)
+        Games.query.filter_by(id=id).delete()
+        db.session.commit()
+        flash('Game successfully deleted')
+        return redirect('/show_games')
+    
+    return render_template("show_games.html")
+    
 
-# @app.route('/delete/<int:id>')
-# def delete(id):
-#     game_to_delete = Games.query.get_or_404(id)
-#     try:
-#         db.session.delete(game_to_delete)
-#         db.session.commit()
-#         return redirect('/games')
-#     except:
-#         return "There was a problem deleteing the game"
-#     else:
-#         return render_template('delete.html', game_to_delete)
-
+ 
 @app.route('/add_game', methods=['POST', 'GET'])
 def add_game():
     input_form = InputForm()

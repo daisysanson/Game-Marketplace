@@ -24,15 +24,22 @@
          <th>Game title</th>
             <th>Rating</th>
             <th>Date </th>
+            <th></th>
+            <th></th>
      </tr>
             <tr>
-            
             <td>{{ game.id }}</td>
             <td>{{ game.name }}</td>
             <td>{{ game.rating }}</td>
             <td>{{ game.date_released| strftime }}</td>
-
-         
+            <td>
+              <form action="{{url_for('delete', id=game.id)}}" method="post">
+                <input type="hidden" name="update" value="delete">
+                <input type="submit" value="Delete" class="btn btn-danger">
+              </form>
+            </td>
+            <td><a href="update/{{game.id}}" class = "btn btn-info">Update</a>
+            </td>
          </tr>
          {% endfor %}
 </table>
