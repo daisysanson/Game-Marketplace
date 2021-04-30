@@ -15,14 +15,17 @@
     {% endif %}
   {% endwith %}
 
-  <form method="POST" action="{{ url_for('add_game') }}">
+  <form class="col-md-6 offset-md-3 " method="POST" action="{{ url_for('add_game') }}">
+    <div class="row justify-content-center">
     {{ form.csrf_token }}
-    <div class="form-group">{{ form.name.label }} {{ form.name(size=20, class="form-control") }}</div>
-    <div class="form-group">{{ form.rating.label }} {{ form.rating(size=20, class="form-control", type="rating") }}</div>
+    <div class="form-group">{{ form.name.label }} {{ form.name(size=10, class="form-control") }}</div>
+    <div class="form-group">{{ form.rating.label }} {{ form.rating(size=10, class="form-control", type="rating") }}</div>
     <div class="form-group">{{ form.date_released.label }} {{ form.date_released(class="form-control", type="text") }}
     <small id="advice" class="form-text text-muted">Please enter the date in 'dd/mm/yyyy' format </small>
     </div>
+    </div>
     <button type="submit" class="btn btn-primary">Submit</button>
+  
 </form>
 </div>
 {% endblock %}

@@ -11,5 +11,7 @@ class InputForm(FlaskForm):
     date_released = DateField('Date Released', [validators.InputRequired("Please enter a date")],format='%d/%m/%Y')
 
     def validate_date_released(self, field):
-        if field.data > datetime.date.today() or field.data < datetime.date(1971,1,1) :
-            raise ValidationError("The date you typed was invalid! Please enter a date between Jan 1st 1971 and todays date")
+        if not isinstance(field,datetime):
+            raise ValidationError("Wrong")
+            if field.data > datetime.date.today() or field.data < datetime.date(1971,1,1):
+                raise ValidationError("The date you typed was invalid! Please enter a date between Jan 1st 1971 and todays date")
