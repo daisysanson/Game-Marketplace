@@ -35,6 +35,7 @@ def update(id):
             db.session.commit()
             return redirect('/show_games')
 
+    flash_errors(input_form)
     return render_template('update.html', game=game, form=input_form)
 
 @app.route('/delete/<int:id>', methods=['POST'])
@@ -100,7 +101,7 @@ def page_not_found(error):
 @app.template_filter('strftime')
 def _jinja2_filter_datetime(date):
 
-    return date.strftime('%d-%m-%Y')
+    return date.strftime('%d/%m/%Y')
 
 if __name__ == '__main__':
     app.run(debug=True,host="0.0.0.0",port="8080")

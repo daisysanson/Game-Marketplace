@@ -1,4 +1,3 @@
-
 from datetime import datetime, date
 from app import db
 
@@ -18,3 +17,4 @@ class Games(db.Model):
 
     def __repr__(self):
         return '<Game %r>' % self.id
+
