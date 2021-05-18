@@ -12,19 +12,18 @@ Python 3.7 and above
 ## Setting up the Enviroments
 You should install a virtual enviroment and conifgure it to run on Python 3. 
 
-To install your virtual enviroment:
-```
+To install your virtual environment:
 
-python3 -m pip install --user virtualenv
+```python3 -m pip install --user virtualenv```
 
-```
-To run your virtual enviroment, type in the command line:
+To create your virtual environment:
 
-```
+```virtualenv venv```
 
-source venv/bin/activate
+To run your virtual environment, type in the command line:
 
-```
+```source venv/bin/activate```
+
 
 You will also need to install the  `requirements.txt` file to your virtual environment on the first run. You can do this by running the following command when your environment is activated.
 
